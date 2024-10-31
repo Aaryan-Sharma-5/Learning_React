@@ -1,7 +1,4 @@
-function TodoItem2() {
-
-  let todoName = "LeetCode";
-  let todoDate = "15 / 12 / 2024";
+function TodoItem({todoName, todoDate}) {
 
   return (
 <div class = "container text-center">
@@ -16,4 +13,4 @@ function TodoItem2() {
   );
 }
 
-export default TodoItem2;
+export default TodoItem;
