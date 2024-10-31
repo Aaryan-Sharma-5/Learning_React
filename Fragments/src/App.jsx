@@ -1,22 +1,24 @@
-import React from "react";
+import SubjectNames from "./components/SubjectNames";
+import ErrorMessage from "./components/ErrorMessage";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
 function App() {
-  let subjects = ["Maths", "Science", "English", "History", "Geography", "Computer Science"];
-  let emptyMessage = subjects.length === 0 ? <h3>No Subjects Available</h3> : null
+  let subjectNames = [
+    "Mathematics",
+    "Science",
+    "English",
+    "History",
+    "Geography",
+  ];
 
   return (
     // React.Fragment is used to wrap multiple elements without adding extra nodes to the DOM.
-    <> 
-      <div>
+    <>
         <h1>Subjects</h1>
-        {emptyMessage}
-        <ul className ="list-group">
-          {subjects.map(item =>  <li className="list-group-item">{item}</li>)}
-        </ul>
-      </div>
-    </> 
+        <ErrorMessage items={subjectNames}></ErrorMessage>
+        <SubjectNames items={subjectNames}></SubjectNames>
+    </>
   );
 }
 
