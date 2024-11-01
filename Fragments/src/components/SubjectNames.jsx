@@ -7,7 +7,7 @@ const SubjectNames = ({ items }) => {
         <Item
           key={item}
           SubjectNames={item}
-          handleStudyButton={() => alert("clicked")}
+          handleStudyButton={() => alert(" Studying " + item)}
         ></Item>
       ))}
     </ul>
