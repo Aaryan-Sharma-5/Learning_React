@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { VscAdd } from "react-icons/vsc";
 
-
 function AddTodo({ onNewItem }) {
   const [todoName, setTodoName] = useState("");
   const [todoDate, setTodoDate] = useState("");
@@ -14,7 +13,8 @@ function AddTodo({ onNewItem }) {
     setTodoDate(event.target.value);
   };
 
-  const onAddChange = () => {
+  const onAddChange = (event) => {
+    event.preventDefault();
     onNewItem(todoName, todoDate);
     setTodoName("");
     setTodoDate("");
@@ -22,7 +22,7 @@ function AddTodo({ onNewItem }) {
 
   return (
     <div className="container text-center">
-      <div className="row">
+      <form className="row" onSubmit={onAddChange}>
         <div className="col-6">
           <input
             type="text"
@@ -35,15 +35,11 @@ function AddTodo({ onNewItem }) {
           <input type="date" value={todoDate} onChange={onDateChange} />
         </div>
         <div className="col-2">
-          <button
-            type="button"
-            className="btn btn-success"
-            onClick={onAddChange}
-          >
+          <button className="btn btn-success">
             <VscAdd />
           </button>
         </div>
-      </div>
+      </form>
     </div>
   );
 }
