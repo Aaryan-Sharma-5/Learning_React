@@ -1,23 +1,17 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { VscAdd } from "react-icons/vsc";
 
 function AddTodo({ onNewItem }) {
-  const [todoName, setTodoName] = useState("");
-  const [todoDate, setTodoDate] = useState("");
-
-  const onNameChange = (event) => {
-    setTodoName(event.target.value);
-  };
-
-  const onDateChange = (event) => {
-    setTodoDate(event.target.value);
-  };
+  const toDoNameElement = useRef();
+  const toDoDateElement = useRef();
 
   const onAddChange = (event) => {
     event.preventDefault();
+    const todoName = toDoNameElement.current.value;
+    const todoDate = toDoDateElement.current.value;
+    toDoNameElement.current.value = "";
+    toDoDateElement.current.value = "";
     onNewItem(todoName, todoDate);
-    setTodoName("");
-    setTodoDate("");
   };
 
   return (
@@ -26,13 +20,15 @@ function AddTodo({ onNewItem }) {
         <div className="col-6">
           <input
             type="text"
+            ref={toDoNameElement}
             placeholder="Enter work"
-            value={todoName}
-            onChange={onNameChange}
           />
         </div>
         <div className="col-4">
-          <input type="date" value={todoDate} onChange={onDateChange} />
+          <input
+            type="date"
+            ref={toDoDateElement}
+          />
         </div>
         <div className="col-2">
           <button className="btn btn-success">
