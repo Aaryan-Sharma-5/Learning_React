@@ -1,28 +1,40 @@
+import { useState } from "react";
 import AppName from "./components/AppName";
 import AddTodo from "./components/AddTodo";
 import TodoItems from "./components/TodoItems";
-import "./App.css";
 
 function App() {
-const todoItems = [{
-  name: "Complete React",
-  date: "25/12/24"
-},
-{
-  name: "LeetCode",
-  date: "25/12/24"
-},
-{
-  name: "Codeforces",
-  date: "25/12/24"
-}
-];
+// const initialTodoItems = [{
+//   name: "Complete React",
+//   date: "25/12/24"
+// },
+// {
+//   name: "LeetCode",
+//   date: "25/12/24"
+// },
+// {
+//   name: "Codeforces",
+//   date: "25/12/24"
+// }
+// ];
+
+  const [todoItems, setTodoItems] = useState([]);
+
+  const onNewItem = (itemName, itemDate) => {
+    const newTodoItems = ([...todoItems, {name:itemName, date:itemDate}]);
+    setTodoItems(newTodoItems);
+  };
+
+  const onDeleteItem = (todoItemName) => {
+    const newTodoItems = todoItems.filter(item => item.name !== todoItemName);
+    setTodoItems(newTodoItems);
+  }
 
   return (
     <center className="todo-container">
       <AppName></AppName>
-      <AddTodo></AddTodo>
-      <TodoItems todoItems={todoItems}></TodoItems>
+      <AddTodo onNewItem={onNewItem}></AddTodo>
+      <TodoItems todoItems={todoItems} onDeleteClick={onDeleteItem}></TodoItems>
     </center>
   );
 }
