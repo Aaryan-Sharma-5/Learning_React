@@ -11,15 +11,24 @@ function App() {
     "Science",
     "English",
     "History",
-    "Geography",
+    "Geography", 
   ];
+
+  let textToShow = "No subjects found";
+
+
+  const handleStudyButton = (event) => {
+    console.log(event.target.value);  
+    textToShow = event.target.value;
+  }
 
   return (
     // React.Fragment is used to wrap multiple elements without adding extra nodes to the DOM.
     <Container>
         <h1 className="header">Subjects</h1>
+        <p>{textToShow}</p>
         <ErrorMessage items={subjectNames}></ErrorMessage>
-        <SubjectInput></SubjectInput>
+        <SubjectInput handleStudyButton={handleStudyButton}></SubjectInput>
         <SubjectNames items={subjectNames}></SubjectNames>
     </Container>
   );
