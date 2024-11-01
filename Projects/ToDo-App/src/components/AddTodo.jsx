@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { VscAdd } from "react-icons/vsc";
+
 
 function AddTodo({ onNewItem }) {
   const [todoName, setTodoName] = useState("");
@@ -38,7 +40,7 @@ function AddTodo({ onNewItem }) {
             className="btn btn-success"
             onClick={onAddChange}
           >
-            Add
+            <VscAdd />
           </button>
         </div>
       </div>
