@@ -3,6 +3,7 @@ import ErrorMessage from "./components/ErrorMessage";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import Container from "./components/Container";
+import SubjectInput from "./components/SubjectInput";
 
 function App() {
   let subjectNames = [
@@ -18,6 +19,7 @@ function App() {
     <Container>
         <h1 className="header">Subjects</h1>
         <ErrorMessage items={subjectNames}></ErrorMessage>
+        <SubjectInput></SubjectInput>
         <SubjectNames items={subjectNames}></SubjectNames>
     </Container>
   );
