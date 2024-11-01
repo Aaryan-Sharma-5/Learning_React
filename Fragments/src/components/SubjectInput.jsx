@@ -1,12 +1,12 @@
 import styles from "./SubjectInput.module.css";
 
-const SubjectInput = ({ handleStudyButton }) => {
+const SubjectInput = ({ handleKeyDown }) => {
   return (
     <input
       type="text"
       placeholder="Subject"
       className={styles.SubjectInput}
-      onChange={handleStudyButton}
+      onKeyDown={handleKeyDown}
     />
   );
 };
