@@ -1,9 +1,12 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
+import { useContext } from "react";
 import { VscAdd } from "react-icons/vsc";
+import { TodoItemsContext } from "../store/todo-items-store";
 
-function AddTodo({ onNewItem }) {
-  const toDoNameElement = useRef();
-  const toDoDateElement = useRef();
+function AddTodo() {
+  const { onNewItem } = useContext(TodoItemsContext);
+  const toDoNameElement = useState();
+  const toDoDateElement = useState();
 
   const onAddChange = (event) => {
     event.preventDefault();
@@ -20,14 +23,12 @@ function AddTodo({ onNewItem }) {
         <div className="col-6">
           <input
             type="text"
-            ref={toDoNameElement}
             placeholder="Enter work"
           />
         </div>
         <div className="col-4">
           <input
             type="date"
-            ref={toDoDateElement}
           />
         </div>
         <div className="col-2">
