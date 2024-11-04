@@ -1,0 +1,11 @@
+.app-container{
+    display: flex;
+}
+
+.sidebar{
+  min-height: 730px;
+}
+
+.headerFooter{
+  width: 100%;
+}
