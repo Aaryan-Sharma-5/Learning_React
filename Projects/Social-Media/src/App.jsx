@@ -22,7 +22,7 @@ function App() {
           <Header></Header>
           {selectedPage === "Home" ? (
             <PostCarousel></PostCarousel>
-          ) : (
+          ) : ( 
             <CreatePost></CreatePost>
           )}
           <Footer></Footer>
