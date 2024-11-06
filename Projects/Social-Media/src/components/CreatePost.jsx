@@ -31,7 +31,6 @@ const CreatePost = () => {
   return (
     <form className="create-post" onSubmit={submitHandler}>
       <h2>Create a New Post</h2>
-
       <div className="mb-3">
         <label htmlFor="userId" className="form-label">
           User ID

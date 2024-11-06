@@ -2,10 +2,6 @@
   display: flex;
 }
 
-.content {
-  width: 100%;
-}
-
 .sidebar {
   min-height: 730px;
 }
@@ -33,5 +29,9 @@
 }
 
 .welcome-msg{
+  margin: 50px 0;
+}
+
+.spinner{
   margin: 50px 0;
 }

@@ -3,7 +3,7 @@ import { createContext, useReducer } from "react";
 export const PostCarousel = createContext({
   postCarousel: [],
   addPost: () => {},
-  addInitialPost: () => {},
+  addInitialPosts: () => {},
   deletePost: () => {},
 });
 
@@ -41,7 +41,7 @@ const PostCarouselProvider = ({ children }) => {
     });
   };
 
-  const addInitialPost = (posts) => {
+  const addInitialPosts = (posts) => {
     dispatchPostCarousel({
       type: "ADD_INITIAL_POSTS",
       payload: {
@@ -59,7 +59,7 @@ const PostCarouselProvider = ({ children }) => {
       value={{
         postCarousel,
         addPost,
-        addInitialPost,
+        addInitialPosts,
         deletePost,
       }}
     >

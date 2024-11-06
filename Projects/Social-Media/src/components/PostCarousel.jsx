@@ -1,27 +1,36 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import Post from "./Post";
 import { PostCarousel as PostCarouselData } from "../store/post-carousel-store";
 import WelcomeMsg from "./WelcomeMsg";
+import LoadingSpinner from "./LoadingSpinner";
 
 const PostCarousel = () => {
-  const { postCarousel, addInitialPost } = useContext(PostCarouselData);
+  const { postCarousel, addInitialPosts } = useContext(PostCarouselData);
+  const [fetching, setFetching] = useState(false);
 
-  const handleGetPostsClick = () => {
-    fetch("https://dummyjson.com/posts")
+  useEffect(() => {
+    setFetching(true);
+    const controller = new AbortController();
+    const signal = controller.signal;
+
+    fetch("https://dummyjson.com/posts", { signal })
       .then((res) => res.json())
       .then((data) => {
-        addInitialPost(data.posts);
+        addInitialPosts(data.posts);
+        setFetching(false);
       });
-  };
+
+    return () => {
+      controller.abort();
+    };
+  }, []);
 
   return (
     <>
-      {postCarousel.length === 0 && (
-        <WelcomeMsg onGetPostsClick={handleGetPostsClick} />
-      )}
-      {postCarousel.map((post) => (
-        <Post key={post.id} post={post}></Post>
-      ))}
+      {fetching && <LoadingSpinner />}
+      {!fetching && postCarousel.length === 0 && <WelcomeMsg />}
+      {!fetching &&
+        postCarousel.map((post) => <Post key={post.id} post={post}></Post>)}
     </>
   );
 };
