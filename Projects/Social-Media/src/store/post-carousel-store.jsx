@@ -1,4 +1,4 @@
-import { createContext, useCallback, useReducer } from "react";
+import { createContext, useCallback, useReducer, useEffect } from "react";
 
 export const PostCarousel = createContext({
   postCarousel: [],
