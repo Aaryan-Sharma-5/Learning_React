@@ -1,9 +1,11 @@
 import { useRef } from "react";
 import { useContext } from "react";
 import { PostCarousel } from "../store/post-carousel-store";
+import { useNavigate } from "react-router-dom";
 
 const CreatePost = () => {
   const { addPost } = useContext(PostCarousel);
+  const navigate = useNavigate();
 
   const userIdElement = useRef();
   const postTitleElement = useRef();
@@ -25,9 +27,9 @@ const CreatePost = () => {
     reactionsElement.current.value = "";
     tagsElement.current.value = "";
 
-    fetch('https://dummyjson.com/posts/add', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+    fetch("https://dummyjson.com/posts/add", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         title: postTitle,
         body: postBody,
@@ -36,8 +38,11 @@ const CreatePost = () => {
         tags: tags,
       }),
     })
-    .then(res => res.json())
-    .then(post => addPost(post));
+      .then((res) => res.json())
+      .then((post) => {
+        addPost(post);
+        navigate("/");
+      });
   };
 
   return (
