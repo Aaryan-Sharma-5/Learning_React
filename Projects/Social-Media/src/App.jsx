@@ -25,7 +25,7 @@ function App() {
           ) : ( 
             <CreatePost></CreatePost>
           )}
-          <Footer></Footer>
+          <Footer></Footer>      
         </div>
       </div>
     </PostCarouselProvider>

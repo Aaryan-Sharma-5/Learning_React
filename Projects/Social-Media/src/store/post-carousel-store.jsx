@@ -27,16 +27,11 @@ const PostCarouselProvider = ({ children }) => {
     []
   );
 
-  const addPost = (userId, postTitle, postContent, reactions, tags) => {
+  const addPost = (posts) => {
     dispatchPostCarousel({
       type: "ADD_POST",
       payload: {
-        id: Date.now(),
-        title: postTitle,
-        content: postContent,
-        reactions: reactions,
-        userId: userId,
-        tags: tags,
+        posts,
       },
     });
   };
@@ -62,7 +57,6 @@ const PostCarouselProvider = ({ children }) => {
       value={{
         postCarousel,
         addPost,
-        addInitialPosts,
         deletePost,
       }}
     >

@@ -7,7 +7,7 @@ const CreatePost = () => {
 
   const userIdElement = useRef();
   const postTitleElement = useRef();
-  const postContentElement = useRef();
+  const postBodyElement = useRef();
   const reactionsElement = useRef();
   const tagsElement = useRef();
 
@@ -15,17 +15,29 @@ const CreatePost = () => {
     event.preventDefault();
     const userId = userIdElement.current.value;
     const postTitle = postTitleElement.current.value;
-    const postContent = postContentElement.current.value;
+    const postBody = postBodyElement.current.value;
     const reactions = reactionsElement.current.value;
     const tags = tagsElement.current.value.split(" ");
 
     userIdElement.current.value = "";
     postTitleElement.current.value = "";
-    postContentElement.current.value = "";
+    postBodyElement.current.value = "";
     reactionsElement.current.value = "";
     tagsElement.current.value = "";
 
-    addPost(userId, postTitle, postContent, reactions, tags);
+    fetch('https://dummyjson.com/posts/add', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        title: postTitle,
+        body: postBody,
+        reactions: reactions,
+        userId: userId,
+        tags: tags,
+      }),
+    })
+    .then(res => res.json())
+    .then(post => addPost(post));
   };
 
   return (
@@ -63,7 +75,7 @@ const CreatePost = () => {
         </label>
         <textarea
           type="text"
-          ref={postContentElement}
+          ref={postBodyElement}
           rows="3"
           className="form-control"
           id="content"
