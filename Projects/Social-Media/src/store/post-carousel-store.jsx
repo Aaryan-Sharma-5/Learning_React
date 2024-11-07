@@ -1,4 +1,4 @@
-import { createContext, useReducer } from "react";
+import { createContext, useCallback, useReducer } from "react";
 
 export const PostCarousel = createContext({
   postCarousel: [],
@@ -49,10 +49,13 @@ const PostCarouselProvider = ({ children }) => {
       },
     });
   };
-
-  const deletePost = (postId) => {
-    dispatchPostCarousel({ type: "DELETE_POST", payload: { postId } });
-  };
+ 
+  const deletePost = useCallback(
+    (postId) => {
+      dispatchPostCarousel({ type: "DELETE_POST", payload: { postId } });
+    },
+    [dispatchPostCarousel]
+  );
 
   return (
     <PostCarousel.Provider
