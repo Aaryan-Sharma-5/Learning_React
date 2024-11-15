@@ -1,1 +1,1 @@
-React Practice
+React and Redux Practice
